@@ -39,14 +39,14 @@ The `chrome_path` and `chrome_name` will be determined in the `environment.py` f
 
 #### Methods:
 
--  `has_file()`
--  `create_shortcut()`
+-  `__has_file()`
+-  `__create_shortcut()`
 -  `execute()`
 
-Note: `has_file()` and `create_shortcut()` methods is just helpfull functions to be used in `execute()`.
+Note: `__has_file()` and `__create_shortcut()` methods is just helpfull functions to be used in `execute()`.
 
-`has_file()` uses `os.listdir()` to get the names of files in some folder based on `file_name`(str), `root_path`(str) parameters.
+`__has_file()` uses `os.listdir()` to get the names of files in some folder based on `file_name`(str), `root_path`(str) parameters.
 
-`create_shortcut()` uses a shell instance created with `win32com.client`'s pyhton library to create a shortcut using `path_from`(str) and `path_to`(str) parameters.
+`__create_shortcut()` uses a shell instance created with `win32com.client`'s pyhton library to create a shortcut using `path_from`(str) and `path_to`(str) parameters.
 
-The `execute()` method just use `has_file()` to verify the has some new chrome.exe in the root folder, and if exists, use `os.rename` and `os.remove` to make the necessary changes and then use `create_shortcut()` method to update the .lnk in desktop.
+The `execute()` method just use `__has_file()` to verify the has some new chrome.exe in the root folder, and if exists, use `os.rename` and `os.remove` to make the necessary changes and then use `__create_shortcut()` method to update the .lnk in desktop.

@@ -9,14 +9,14 @@ class ChromeFixer:
       self.chrome_name = CHROME_NAME
 
 
-   def has_file(self, file_name: str, root_path: str) -> bool:
+   def __has_file(self, file_name: str, root_path: str) -> bool:
       if file_name in os.listdir(root_path):
          return True
 
       return False
 
 
-   def create_shortcut(self, path_from: str, path_to: str):
+   def __create_shortcut(self, path_from: str, path_to: str):
       shell = Dispatch('WScript.Shell')
 
       shortcut = shell.CreateShortCut(path_to)
@@ -25,7 +25,7 @@ class ChromeFixer:
 
 
    def execute(self):
-      has_chrome = self.has_file('chrome1.exe', self.chrome_path)
+      has_chrome = self.__has_file('chrome.exe', self.chrome_path)
 
       if has_chrome:
          # Olds
@@ -39,10 +39,11 @@ class ChromeFixer:
          # Shortcuts
          os.remove(f'{self.desktop_path}\\Chrome.lnk')
 
-         self.create_shortcut(
+         self.__create_shortcut(
             path_from = f'{self.chrome_path}\\{self.chrome_name}',
-            path_to = f'{self.desktop_path}'
+            path_to = f'{self.desktop_path}.lnk'
          )
 
 # Execute Fix
-ChromeFixer.execute()
+if __name__ == '__main__':
+   ChromeFixer().execute()
